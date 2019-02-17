@@ -2,9 +2,11 @@ const express = require('express')
 const app = express()
 
 
-app.get('/', (req, res) => {
-  res.send('HEY!')
-})
+//app.get('/', (req, res) => {
+//  res.send('HEY!')
+//})
+app.use(express.static('public'))
+
 app.get('/greeting', (req, res) => {
   res.send('Welcome to the sample node js server !')
 })
