@@ -4,10 +4,10 @@ const {Pool, Client} = require('pg');
 const app = express()
 var cors = require('cors')
 
-var corsOptions = {
-  origin: "http://localhost:3000",
-  optionSuccessStatus: 200
-}
+//var corsOptions = {
+//  origin: "http://localhost:3000",
+//  optionSuccessStatus: 200
+//}
 
 const pool = new Pool({
   user: "alexander",
@@ -36,7 +36,7 @@ getPlaygroundItems = function(query){
 //})
 app.use(express.static('public'))
 
-app.get('/budget', cors(corsOptions), (req, res) => {
+app.get('/budget', cors(), (req, res) => {
   //Get the information out of the database and send it to the front end
   console.log(req)
     incomeStreams = [
@@ -112,4 +112,4 @@ app.get('/playground', (req, res) => {
   
 })
 
-app.listen(5000, () => console.log('Server running on port 5000'))
+app.listen(3000, () => console.log('Server running on port 5000'))
