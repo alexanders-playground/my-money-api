@@ -26,7 +26,6 @@ getPlaygroundItems = function(query){
         }else{
           console.log(res.rows)
           resolve(res.rows);
-          
         }
     })
   })
