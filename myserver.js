@@ -94,11 +94,9 @@ app.get('/budget', cors(), (req, res) => {
   res.send({incomeStreams, expenses})
 })
 
-
 app.get('/who/:name', (req, res) => {
   res.send('Hello '+ req.params.name)
 })
-
 
 app.get('/playground', (req, res) => {
   var query = 'SELECT * from playground;'
