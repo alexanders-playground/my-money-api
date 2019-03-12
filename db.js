@@ -33,7 +33,7 @@ IncomeStream.belongsTo(Budget);
 
 
 //Drop the table if it already exists
-sequelize.sync({ force: true})
+sequelize.sync({ force: false})
   .then(() => {
       console.log("Database & Table created !")
   })

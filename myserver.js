@@ -13,10 +13,10 @@ app.set('json spaces', 4);
 const { Budget, IncomeStream, Expense } = require('./db');
 
 
-//var corsOptions = {
- // origin: "http://localhost:3000",
- // optionSuccessStatus: 200
-//}
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionSuccessStatus: 200
+}
 
 var BudgetController = require('./Controllers/Budget');
 
@@ -28,10 +28,13 @@ var BudgetController = require('./Controllers/Budget');
 //})
 
 app.use(express.static('public'));
-app.use('/', BudgetController);
+app.use('/budget', cors(), BudgetController);
 
-/*
-app.get('/budget', cors(), (req, res) => {
+app.get('/who/:name', (req, res) => {
+  res.send('Hello '+ req.params.name)
+})
+
+app.get('/test', cors(), (req, res) => {
   //Get the information out of the database and send it to the front end
   console.log(req)
     incomeStreams = [
@@ -87,43 +90,8 @@ app.get('/budget', cors(), (req, res) => {
     ]
 
   res.send({incomeStreams, expenses})
-})*/
-
-app.get('/who/:name', (req, res) => {
-  res.send('Hello '+ req.params.name)
 })
 
-app.get('/myBudgets', (req, res) => {
-  Budget.findAll({ include : [{all: true}] }).then(function(budget){
-    console.log(JSON.stringify((budget), null, "  "));
-  });
-
-})
-
-app.post('/addBudget', (req, res) => {
-  Budget.create( {
-    'name': 'my_budget'
-  }).then(function(budget){
-      IncomeStream.create({
-        'amount': 2000,
-        'name': 'salary',
-        'frequency': 1
-      }).then(function(incomestream){
-        budget.setIncomestream(incomestream);
-        Expense.create({
-          'amount': 200,
-          'name': 'petrol',
-          'frequency': 1
-      }).then(function(expense){
-        budget.setExpense(expense);
-      });
-    });
-  }).catch(function(error){
-    console.log(error);
-    res.send("Error: " + error)
-  });
-  res.send("Successfully added your budget !")
-});
 
 var server = app.listen(port, function(){
   console.log('Express server listening on port '+ port);
