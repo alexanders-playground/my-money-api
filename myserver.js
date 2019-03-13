@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 })
 
 app.use(express.static('public'));
-app.use('/budget', cors(), BudgetController);
+app.use('/budget', BudgetController);
 
 app.get('/who/:name', (req, res) => {
   res.send('Hello '+ req.params.name)
