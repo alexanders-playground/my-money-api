@@ -12,16 +12,16 @@ router.use(bodyParser.json());
 //const Expense = require('../Models/Expense');
 const { Budget, IncomeStream, Expense } = require('../db');
 
-var corsOptions = {
+/*var corsOptions = {
   origin: "http://localhost:3000",
   optionSuccessStatus: 200
-}
+}*/
 
 //On POST user creates his/her budget with Income Streams and expenses
 //Method bulk adds incomestreams and then maps each of the to the budget item
 //saying that this budget has all these income streams associated. This is the
 //same for expenses
-router.post('/add', cors(), function (req, res){
+router.post('/add', function (req, res){
   Budget.create( {
     'name': req.body.name
   }).then(function(budget){
@@ -48,7 +48,7 @@ router.post('/add', cors(), function (req, res){
 
 //GET method that returns the users budget consisting off all the
 //Incomestreams and expenses.
-router.get('/list', cors(), function (req, res){
+router.get('/list', function (req, res){
   Budget.findAll({ include : [{all: true}] }).then(function(budget){
     console.log(JSON.stringify((budget[0]), null, "  "));
     res.send(JSON.stringify((budget[0]), null, "  "));
