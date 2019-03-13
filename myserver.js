@@ -21,15 +21,3 @@ const { Budget, IncomeStream, Expense } = require('./db');
 var BudgetController = require('./Controllers/Budget');
 
 
-app.use(express.static('public'));
-app.use('/budget', BudgetController);
-
-app.get('/who/:name', (req, res) => {
-  res.send('Hello '+ req.params.name)
-})
-
-
-
-var server = app.listen(port, function(){
-  console.log('Express server listening on port '+ port);
-});
