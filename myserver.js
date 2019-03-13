@@ -25,7 +25,7 @@ var BudgetController = require('./Controllers/Budget');
 
 app.get('/', (req, res) => {
   res.send('HEY!')
-})
+});
 
 app.use(express.static('public'));
 app.use('/budget', cors(), BudgetController);
