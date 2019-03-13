@@ -13,19 +13,19 @@ app.set('json spaces', 4);
 const { Budget, IncomeStream, Expense } = require('./db');
 
 
-var corsOptions = {
+/*var corsOptions = {
   origin: "http://localhost:3000",
   optionSuccessStatus: 200
-}
+}*/
 
 var BudgetController = require('./Controllers/Budget');
 
 
 
 
-//app.get('/', (req, res) => {
-//  res.send('HEY!')
-//})
+app.get('/', (req, res) => {
+  res.send('HEY!')
+})
 
 app.use(express.static('public'));
 app.use('/budget', cors(), BudgetController);
@@ -34,7 +34,7 @@ app.get('/who/:name', (req, res) => {
   res.send('Hello '+ req.params.name)
 })
 
-app.get('/test', cors(), (req, res) => {
+app.get('/test', (req, res) => {
   //Get the information out of the database and send it to the front end
   console.log(req)
     incomeStreams = [
